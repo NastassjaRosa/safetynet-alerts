@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### logs & rapports locaux ###
+*.log
+*.gz
+/logs/
+/target/site/
+/target/jacoco.exec
