@@ -13,6 +13,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SafetynetAlertsApplication {
 
     /**
+     * Constructeur par défaut requis par Spring.
+     * Ne fait rien de spécial.
+     */
+    public SafetynetAlertsApplication() {
+        // no-op
+    }
+
+    /**
      * Démarre l’application Spring Boot.
      *
      * @param args arguments de ligne de commande (non utilisés)
