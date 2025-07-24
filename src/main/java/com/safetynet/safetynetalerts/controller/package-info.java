@@ -1,2 +1,4 @@
-/** Endpoints REST de l'application SafetyNet Alerts. */
+/**
+ * Endpoints REST de l'application SafetyNet Alerts.
+ */
 package com.safetynet.safetynetalerts.controller;
