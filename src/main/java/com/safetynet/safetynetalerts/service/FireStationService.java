@@ -36,4 +36,4 @@ public class FireStationService {
                                 .equals(address)) // pour chaque caserne, on lit l'addresse, si l'addresse correspond on garde donc on garde seulement l’adresse voulue
                 .collect(Collectors.toList()); // toutes les caserne qui on passées le filtre sont rangées dans une nouvelles liste ""re-fabrique"" une List
     }
-    }
+}
