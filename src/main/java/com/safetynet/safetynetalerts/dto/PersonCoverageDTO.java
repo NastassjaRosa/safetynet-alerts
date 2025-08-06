@@ -9,7 +9,7 @@ import lombok.Data;
  * Représente UNE personne dans la réponse de l’URL
  *  GET /firestation?stationNumber=X
  * Pourquoi un « DTO » ?  ➜  On ne veut pas exposer TOUT l’objet Person
- * (âge, e-mail, etc.) – juste ce dont le front a besoin.
+ *  juste ce dont le front a besoin.
  */
 
 // Lombok → génère getters, setters, equals, hashCode, toString

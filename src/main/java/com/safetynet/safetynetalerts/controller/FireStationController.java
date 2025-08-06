@@ -1,9 +1,11 @@
 package com.safetynet.safetynetalerts.controller;
 
 
+import com.safetynet.safetynetalerts.dto.StationCoverageDTO;
 import com.safetynet.safetynetalerts.model.FireStation;
 import com.safetynet.safetynetalerts.service.FireStationService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.XSlf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,7 @@ import java.util.List;
  * Endpoints REST relatifs aux casernes Fire Stations.
  * controller, recois la requette et envois la réponse
  */
-
+@XSlf4j
 //Combine @Controller (déclare une classe MVC) + @ResponseBody (tout ce qu'il je retourne est converti en JSON
 @RestController
 //Préfixe d’URL : tous les chemins de ce contrôleur commenceront par /firestation
@@ -37,4 +39,14 @@ public class FireStationController {
         List<FireStation> result = fireStationService.findByAddress(address);
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping(params = "stationNumber")
+    public ResponseEntity <StationCoverageDTO> getCoverageByStation(@RequestParam int stationNumber) {
+        log.debug ("GET /firestation?stationNumber={}", stationNumber);
+        StationCoverageDTO dto = fireStationService.getCoverageByStation(stationNumber);
+        log.info("Coverage found -> {} persons", dto.getPersons().size());
+
+        return ResponseEntity.ok(dto);
+    }
+
 }
