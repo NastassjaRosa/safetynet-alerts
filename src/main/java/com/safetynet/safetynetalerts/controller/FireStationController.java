@@ -5,7 +5,7 @@ import com.safetynet.safetynetalerts.dto.StationCoverageDTO;
 import com.safetynet.safetynetalerts.model.FireStation;
 import com.safetynet.safetynetalerts.service.FireStationService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.XSlf4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import java.util.List;
  * Endpoints REST relatifs aux casernes Fire Stations.
  * controller, recois la requette et envois la réponse
  */
-@XSlf4j
+@Slf4j
 //Combine @Controller (déclare une classe MVC) + @ResponseBody (tout ce qu'il je retourne est converti en JSON
 @RestController
 //Préfixe d’URL : tous les chemins de ce contrôleur commenceront par /firestation
