@@ -119,7 +119,12 @@ public class FireStationService {
                 .isPresent();
     }
 
-
+    public boolean deleteMapping(String address, int station) {
+        return repo.getDataFile()
+                .getFireStations()
+                .removeIf(f -> f.getAddress().equalsIgnoreCase(address)
+                        && f.getStation() == station);
+    }
 
 
 }
