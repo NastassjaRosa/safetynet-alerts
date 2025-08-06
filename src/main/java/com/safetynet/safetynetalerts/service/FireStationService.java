@@ -30,7 +30,7 @@ public class FireStationService {
     public List<FireStation> findByAddress(String address) {
         return dataRepository.getDataFile() // objet racine contenant toutes les listes
                 .getFireStations() // List<FireStation> On prend toutes les casernes connues.
-                .stream() // on passe en « mode pipeline » Les casernes sont toutes la . On n’a plus besoin de boucles ; le strem gère ""l’enchaînement"" des casernes.
+                .stream() // on passe en « mode pipeline » Les casernes sont toutes la . On n’a plus besoin de boucles ; le stream gère ""l’enchaînement"" des casernes.
                 .filter(fs ->
                         fs.getAddress()
                                 .equals(address)) // pour chaque caserne, on lit l'addresse, si l'addresse correspond on garde donc on garde seulement l’adresse voulue
