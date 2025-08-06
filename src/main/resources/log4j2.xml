@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN">
+
+<!-- Appenders (= destinations) -->
+<Appenders>
+    <!-- Console : tout en couleur -->
+    <Console name="Console" target="SYSTEM_OUT">
+        <PatternLayout
+                pattern="%d{HH:mm:ss.SSS} [%t] %-5level %c{1} - %msg%n"/>
+    </Console>
+</Appenders>
+
+<!-- Loggers -->
+<Loggers>
+    <!-- Racine → INFO par défaut -->
+    <Root level="info">
+        <AppenderRef ref="Console"/>
+    </Root>
+
+    <!-- Ton appli : DEBUG -->
+    <Logger name="com.safetynet" level="debug" additivity="false">
+        <AppenderRef ref="Console"/>
+    </Logger>
+</Loggers>
+
+</Configuration>

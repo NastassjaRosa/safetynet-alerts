@@ -56,8 +56,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-to-slf4j</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
     </dependencies>
 
@@ -74,6 +74,7 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
+
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -84,6 +85,10 @@
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                         </exclude>
+                        <excludes>
+                            <exclude>**/dto/**</exclude>
+                            <exclude>**/config/**</exclude>
+                        </excludes>
                     </excludes>
                 </configuration>
             </plugin>
@@ -107,6 +112,11 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>verify</phase>
+                        <goals><goal>report</goal></goals>
                     </execution>
                 </executions>
             </plugin>
