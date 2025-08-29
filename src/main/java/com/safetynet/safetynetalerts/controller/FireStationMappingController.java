@@ -37,7 +37,9 @@ public class FireStationMappingController {
         }
             return ResponseEntity.noContent().build();   // 204
         }
-
+    /**
+     * Delete – suppression d’un mapping adresse + station
+     */
         @DeleteMapping
         public ResponseEntity<Void> delete (@RequestParam String address,
         @RequestParam int station){
