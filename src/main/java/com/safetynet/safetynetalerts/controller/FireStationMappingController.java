@@ -34,8 +34,11 @@ public class FireStationMappingController {
         boolean updated = service.updateMapping(fs);
         if (updated) {
             log.info("Mapping updated {}", fs);
-        }
             return ResponseEntity.noContent().build();   // 204
+        } else {
+            log.warn("Mapping to update not found {}", fs);
+            return ResponseEntity.notFound().build();    // 404
+        }
         }
     /**
      * Delete – suppression d’un mapping adresse + station
