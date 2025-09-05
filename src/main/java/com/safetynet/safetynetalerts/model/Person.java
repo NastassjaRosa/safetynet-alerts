@@ -15,5 +15,5 @@ public class Person {
     private String phone;
     private String email;
 
-
+// Methode qui determine si adulte > 18 ou enfant <= 18 isAdult
 }

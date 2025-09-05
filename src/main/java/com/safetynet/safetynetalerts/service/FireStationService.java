@@ -91,7 +91,7 @@ public class FireStationService {
                                     LocalDate.parse(mr.getBirthdate(), fmt),
                                     now)
                             .getYears();
-                    return age > 18;
+                    return age > 18; // Modifier pour appeler la méthode isAdult du model Person
                 })
                 .count();
 
