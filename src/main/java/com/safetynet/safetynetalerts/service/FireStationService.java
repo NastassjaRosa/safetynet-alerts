@@ -87,11 +87,7 @@ public class FireStationService {
                 .filter(dto -> {
                     MedicalRecord mr = recordByName.get(dto.getFirstName() + "|" + dto.getLastName());
                     if (mr == null) return false;
-                    int age = Period.between(
-                                    LocalDate.parse(mr.getBirthdate(), fmt),
-                                    now)
-                            .getYears();
-                    return age > 18; // Modifier pour appeler la méthode isAdult du model Person
+                    return Person.isAdult(mr.getBirthdate()); // Modifier pour appeler la méthode isAdult du model Person
                 })
                 .count();
 
