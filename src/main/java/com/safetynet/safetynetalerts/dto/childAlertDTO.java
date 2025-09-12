@@ -13,6 +13,6 @@ public class childAlertDTO {
     private String firstName;
     private String lastName;
     private int age;
-    private List<String> householdMenbers; //Liste des autres personnes de la maon mais pas l'enfant
+    private List<String> householdMembers; //Liste des autres personnes de la maon mais pas l'enfant
 
 }
