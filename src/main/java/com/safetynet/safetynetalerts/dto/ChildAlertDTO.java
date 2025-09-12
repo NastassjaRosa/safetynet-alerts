@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 
-public class childAlertDTO {
+public class ChildAlertDTO {
     private String firstName;
     private String lastName;
     private int age;
