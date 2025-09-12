@@ -1,6 +1,7 @@
 package com.safetynet.safetynetalerts.controller;
 
 
+import com.safetynet.safetynetalerts.dto.ChildAlertDTO;
 import com.safetynet.safetynetalerts.dto.StationCoverageDTO;
 import com.safetynet.safetynetalerts.model.FireStation;
 import com.safetynet.safetynetalerts.service.FireStationService;
@@ -49,5 +50,7 @@ public class FireStationController {
 
         return ResponseEntity.ok(dto);
     }
+
+
 
 }

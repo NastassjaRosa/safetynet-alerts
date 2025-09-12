@@ -15,9 +15,11 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
@@ -98,16 +100,7 @@ public class FireStationService {
     }
 
 
-    //partie childAlert
-    public List<ChildAlertDTO> getChildrenByAddress(String address) {
 
-        //recuperer les personnes de dataRepository et filter personnes a l'adresse
-        List<Person> personsAtAddress = repo.getDataFile().getPersons().stream()
-                .filter(p -> p.getAddress().equalsIgnoreCase(address))
-                .collect(Collectors.toList());
-
-        return null;//to do a modifier
-    }
 
 
     //CRUD Mapping
