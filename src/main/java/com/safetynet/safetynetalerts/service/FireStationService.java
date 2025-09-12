@@ -1,6 +1,7 @@
 package com.safetynet.safetynetalerts.service;
 
 
+import com.safetynet.safetynetalerts.dto.ChildAlertDTO;
 import com.safetynet.safetynetalerts.dto.PersonCoverageDTO;
 import com.safetynet.safetynetalerts.dto.StationCoverageDTO;
 import com.safetynet.safetynetalerts.model.FireStation;
@@ -96,6 +97,17 @@ public class FireStationService {
         return new StationCoverageDTO(persons, (int) adultCount, (int) childCount);
     }
 
+
+    //partie childAlert
+    public List<ChildAlertDTO> getChildrenByAddress(String address) {
+
+        //recuperer les personnes de dataRepository et filter personnes a l'adresse
+        List<Person> personsAtAddress = repo.getDataFile().getPersons().stream()
+                .filter(p -> p.getAddress().equalsIgnoreCase(address))
+                .collect(Collectors.toList());
+
+        return null;//to do a modifier
+    }
 
 
     //CRUD Mapping
