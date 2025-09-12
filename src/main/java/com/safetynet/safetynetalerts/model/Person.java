@@ -2,6 +2,7 @@ package com.safetynet.safetynetalerts.model;
 
 import lombok.Data;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -26,13 +27,17 @@ public class Person {
      * @param birthdate la date de naissance (format "MM/dd/yyyy")
      * @return true si adulte (>18), false sinon
      */
-    public boolean isAdult(String birthdate) {
+    public static boolean isAdult(String birthdate) {
         if (birthdate == null || birthdate.isBlank()) return false;
 
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDate dob = LocalDate.parse(birthdate, fmt);
-        int age = Period.between(dob, LocalDate.now()).getYears();
-
+        int age;
+        try {
+            LocalDate dob = LocalDate.parse(birthdate, fmt);
+            age = Period.between(dob, LocalDate.now()).getYears();
+        } catch (DateTimeException e) {
+            return false;
+        }
         return age > 18;
     }
 
