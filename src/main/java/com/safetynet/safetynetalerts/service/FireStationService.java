@@ -122,11 +122,15 @@ public class FireStationService {
                 .getPersons()
                 .stream()
                 .filter(p -> addresses.contains(p.getAddress()))
-
                 .toList();
 
+        // 3. Extraction des téléphones distincts
+        List<String> phones = ContactUtil.getDistinctPhones(personAtStations);
+
+        // 4. Log avec le nombre
         log.info("Station {} -> {} téléphones trouvés", stationNumber, phones.size());
-        return ContactUtil.getDistinctPhones(personAtStations);
+
+        return phones;
     }
 
 
