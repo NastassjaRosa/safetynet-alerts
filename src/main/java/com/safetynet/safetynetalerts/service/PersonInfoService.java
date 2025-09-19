@@ -4,6 +4,7 @@ package com.safetynet.safetynetalerts.service;
 import com.safetynet.safetynetalerts.dto.PersonInfoDTO;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.repository.DataRepository;
+import com.safetynet.safetynetalerts.util.AgeUtil;
 import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +33,7 @@ public class PersonInfoService {
                 .filter(p -> p.getLastName().equalsIgnoreCase(lastName))
                 .map(p -> {
                             MedicalRecord mr = recordByName.get(p.getFirstName() + "|" +p.getLastName());
-                            int age = (mr != null) ? p.getAge(mr.getBirthdate()) : -1;
+                            int age = (mr != null) ? AgeUtil.getAge(mr.getBirthdate()) : -1;
                             return new PersonInfoDTO(
                                     p.getFirstName(),
                                     p.getLastName(),

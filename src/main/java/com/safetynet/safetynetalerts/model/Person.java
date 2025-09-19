@@ -27,19 +27,19 @@ public class Person {
      * @param birthdate la date de naissance (format "MM/dd/yyyy")
      * @return true si adulte (>18), false sinon
      */
-    public static boolean isAdult(String birthdate) {
-        if (birthdate == null || birthdate.isBlank()) return false;
-
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        int age;
-        try {
-            LocalDate dob = LocalDate.parse(birthdate, fmt);
-            age = Period.between(dob, LocalDate.now()).getYears();
-        } catch (DateTimeException e) {
-            return false;
-        }
-        return age > 18;
-    }
+//    public static boolean isAdult(String birthdate) {
+//        if (birthdate == null || birthdate.isBlank()) return false;
+//
+//        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+//        int age;
+//        try {
+//            LocalDate dob = LocalDate.parse(birthdate, fmt);
+//            age = Period.between(dob, LocalDate.now()).getYears();
+//        } catch (DateTimeException e) {
+//            return false;
+//        }
+//        return age > 18;
+//    }
 
     //calcul l'age utiliser pour childAlert pour avoir l'age de l'enfant dans la réponse
     /**

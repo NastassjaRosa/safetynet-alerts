@@ -7,6 +7,7 @@ import com.safetynet.safetynetalerts.model.FireStation;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
+import com.safetynet.safetynetalerts.util.AgeUtil;
 import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +45,7 @@ public class FireService {
         List<FirePersonDTO> personDTOs = persons.stream()
                 .map(p -> {
                     MedicalRecord mr = recordByName.get(p.getFirstName() + "|" + p.getLastName());
-                    int age = (mr != null && mr.getBirthdate() != null) ? p.getAge(mr.getBirthdate()) : -1;
+                    int age = (mr != null && mr.getBirthdate() != null) ? AgeUtil.getAge(mr.getBirthdate()) : -1;
                     return new FirePersonDTO(
                             p.getFirstName(),
                             p.getLastName(),

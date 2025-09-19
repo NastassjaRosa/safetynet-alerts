@@ -4,6 +4,7 @@ import com.safetynet.safetynetalerts.dto.ChildAlertDTO;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
+import com.safetynet.safetynetalerts.util.AgeUtil;
 import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,8 +46,8 @@ public class ChildAlertService {
             MedicalRecord mr = recordByName.get(p.getFirstName() + "|" + p.getLastName());
             if (mr == null || mr.getBirthdate() == null || mr.getBirthdate().isBlank()) continue;
 
-            if (!p.isAdult(mr.getBirthdate())) {
-                int age = p.getAge(mr.getBirthdate());
+            if (!AgeUtil.isAdult(mr.getBirthdate())) {
+                int age = AgeUtil.getAge(mr.getBirthdate());
 
                 // Enlève les enfants de la liste
                 List<String> householdMembers = personsAtAddress.stream()

@@ -8,6 +8,7 @@ import com.safetynet.safetynetalerts.model.FireStation;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
+import com.safetynet.safetynetalerts.util.AgeUtil;
 import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -90,7 +91,7 @@ public class FireStationService {
                 .filter(dto -> {
                     MedicalRecord mr = recordByName.get(dto.getFirstName() + "|" + dto.getLastName());
                     if (mr == null) return false;
-                    return Person.isAdult(mr.getBirthdate()); // Modifier pour appeler la méthode isAdult du model Person
+                    return AgeUtil.isAdult(mr.getBirthdate()); // Modifier pour appeler la méthode isAdult du model Person
                 })
                 .count();
 
