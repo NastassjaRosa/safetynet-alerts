@@ -137,29 +137,29 @@ public class FireStationService {
 
 
 
-    //CRUD Mapping
-
-    public void addMapping(FireStation fs) {
-        repo.getDataFile().getFireStations().add(fs);
-        log.debug("Mapping ajouté {}", fs);
-    }
-
-    public boolean updateMapping(FireStation fs) {
-        return repo.getDataFile()
-                .getFireStations()
-                .stream()
-                .filter(f -> f.getAddress().equalsIgnoreCase(fs.getAddress()))
-                .peek(f -> f.setStation(fs.getStation()))
-                .findFirst()
-                .isPresent();
-    }
-
-    public boolean deleteMapping(String address, int station) {
-        return repo.getDataFile()
-                .getFireStations()
-                .removeIf(f -> f.getAddress().equalsIgnoreCase(address)
-                        && f.getStation() == station);
-    }
+//    //CRUD Mapping
+//
+//    public void addMapping(FireStation fs) {
+//        repo.getDataFile().getFireStations().add(fs);
+//        log.debug("Mapping ajouté {}", fs);
+//    }
+//
+//    public boolean updateMapping(FireStation fs) {
+//        return repo.getDataFile()
+//                .getFireStations()
+//                .stream()
+//                .filter(f -> f.getAddress().equalsIgnoreCase(fs.getAddress()))
+//                .peek(f -> f.setStation(fs.getStation()))
+//                .findFirst()
+//                .isPresent();
+//    }
+//
+//    public boolean deleteMapping(String address, int station) {
+//        return repo.getDataFile()
+//                .getFireStations()
+//                .removeIf(f -> f.getAddress().equalsIgnoreCase(address)
+//                        && f.getStation() == station);
+//    }
 
 
 }
