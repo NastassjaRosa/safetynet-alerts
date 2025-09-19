@@ -27,7 +27,24 @@ public class PersonInfoService {
                 MedicalRecordUtil.indexByName(repo.getDataFile().getMedicalRecords());
 
 
-        return new ArrayList<>();
+        return repo.getDataFile().getPersons()
+                .stream()
+                .filter(p -> p.getLastName().equalsIgnoreCase(lastName))
+                .map(p -> {
+                            MedicalRecord mr = recordByName.get(p.getFirstName() + "|" +p.getLastName());
+                            int age = (mr != null) ? p.getAge(mr.getBirthdate()) : -1;
+                            return new PersonInfoDTO(
+                                    p.getFirstName(),
+                                    p.getLastName(),
+                                    p.getAddress(),
+                                    age,
+                                    p.getEmail(),
+                                    (mr != null) ? mr.getMedications() : List.of(),
+                                    (mr != null) ? mr.getAllergies() : List.of()
+                            );
+                        })
+                .collect(Collectors.toList());
+
     }
 
 
