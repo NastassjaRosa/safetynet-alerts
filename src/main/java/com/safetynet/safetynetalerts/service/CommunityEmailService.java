@@ -3,6 +3,7 @@ package com.safetynet.safetynetalerts.service;
 
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
+import com.safetynet.safetynetalerts.util.ContactUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,13 +21,12 @@ public class CommunityEmailService {
     public List<String> getEmailsByCity(String city) {
         log.debug("getEmailsByCity city: {}", city);
 
-        return repo.getDataFile()
+        List<Person> personsInCity = repo.getDataFile()
                 .getPersons()
                 .stream()
                 .filter(p -> p.getCity().equalsIgnoreCase(city))
-                .map(Person::getEmail)
-                .distinct()
-                .collect(Collectors.toList());
+                .toList();
+        return ContactUtil.getDistinctEmails(personsInCity);
     }
 
 }

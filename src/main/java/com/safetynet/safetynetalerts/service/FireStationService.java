@@ -9,6 +9,7 @@ import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
 import com.safetynet.safetynetalerts.util.AgeUtil;
+import com.safetynet.safetynetalerts.util.ContactUtil;
 import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
 import com.safetynet.safetynetalerts.util.PersonFilterUtil;
 import lombok.RequiredArgsConstructor;
@@ -117,17 +118,15 @@ public class FireStationService {
                 .collect(Collectors.toSet());
 
         // 2. Téléphones des habitants
-        List<String> phones = repo.getDataFile()
+        List<Person> personAtStations = repo.getDataFile()
                 .getPersons()
                 .stream()
                 .filter(p -> addresses.contains(p.getAddress()))
-                .map(Person::getPhone)
-                .filter(Objects::nonNull)
-                .distinct() // supprime les doublons
-                .collect(Collectors.toList());
+
+                .toList();
 
         log.info("Station {} -> {} téléphones trouvés", stationNumber, phones.size());
-        return phones;
+        return ContactUtil.getDistinctPhones(personAtStations);
     }
 
 
