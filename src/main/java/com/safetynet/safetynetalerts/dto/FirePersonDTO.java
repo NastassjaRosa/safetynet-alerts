@@ -6,13 +6,18 @@ import lombok.Data;
 
 import java.util.List;
 
+// une personne avec son nom telephone age médicaments et allergies
+
+
 @Data
 @AllArgsConstructor
-
-public class ChildAlertDTO {
+public class FirePersonDTO {
     private String firstName;
     private String lastName;
+    private String phone;
     private int age;
-    private List<String> householdMembers; //Liste des autres personnes de la maison mais pas l'enfant
+    private List<String> medications;
+    private List<String> allergies;
+
 
 }
