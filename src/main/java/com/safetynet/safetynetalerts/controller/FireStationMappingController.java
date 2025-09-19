@@ -1,6 +1,7 @@
 package com.safetynet.safetynetalerts.controller;
 
 import com.safetynet.safetynetalerts.model.FireStation;
+import com.safetynet.safetynetalerts.service.FireStationMappingService;
 import com.safetynet.safetynetalerts.service.FireStationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class FireStationMappingController {
 
-    private final FireStationService service;
+    private final FireStationMappingService service;
 
     /**
      * POST – ajout d’un nouveau mapping adresse⇄caserne

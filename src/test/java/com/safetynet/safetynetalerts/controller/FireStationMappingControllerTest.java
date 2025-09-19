@@ -2,6 +2,7 @@ package com.safetynet.safetynetalerts.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.safetynetalerts.model.FireStation;
+import com.safetynet.safetynetalerts.service.FireStationMappingService;
 import com.safetynet.safetynetalerts.service.FireStationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class FireStationMappingControllerTest {
 
     @Mock
-    private FireStationService service;
+    private FireStationMappingService service;
 
     @InjectMocks
     private FireStationMappingController controller;
