@@ -16,13 +16,13 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/personInfolastName")
+@RequestMapping("/personInfo")
 public class PersonInfoController {
     private final PersonInfoService personInfoService;
 
     @GetMapping
-    public ResponseEntity<List<PersonInfoDTO>> getPersonInfoLastName(@RequestParam String lastName) {
-        log.debug("GET /personInfolastName = {}", lastName);
+    public ResponseEntity<List<PersonInfoDTO>> getPersonInfo(@RequestParam String lastName) {
+        log.debug("GET /personInfo = {}", lastName);
 
         List<PersonInfoDTO> persons = personInfoService.getPersonByLastName(lastName);
 
