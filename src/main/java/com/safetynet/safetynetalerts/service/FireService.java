@@ -9,6 +9,7 @@ import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
 import com.safetynet.safetynetalerts.util.AgeUtil;
 import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
+import com.safetynet.safetynetalerts.util.PersonFilterUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,9 +35,9 @@ public class FireService {
                 .findFirst()
                 .orElse(-1);
 
-        List<Person> persons = repo.getDataFile().getPersons().stream()
-                .filter(p -> p.getAddress().equalsIgnoreCase(address))
-                .toList();
+        List<Person> persons = PersonFilterUtil.filterByAddress(
+                repo.getDataFile().getPersons(), address
+        );
 
         // Index Prénom Nom avec Dossier médical depuis util
         Map<String, MedicalRecord> recordByName =

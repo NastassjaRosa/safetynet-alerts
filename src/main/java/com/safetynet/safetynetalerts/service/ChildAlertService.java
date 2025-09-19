@@ -6,6 +6,7 @@ import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
 import com.safetynet.safetynetalerts.util.AgeUtil;
 import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
+import com.safetynet.safetynetalerts.util.PersonFilterUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,9 @@ public class ChildAlertService {
     public List<ChildAlertDTO> getChildrenByAddress(String address) {
 
         //recuperer les personnes de dataRepository et filter personnes a l'adresse
-        List<Person> personsAtAddress = repo.getDataFile().getPersons().stream()
-                .filter(p -> p.getAddress().equalsIgnoreCase(address))
-                .collect(Collectors.toList());
+        List<Person> personsAtAddress = PersonFilterUtil.filterByAddress(
+                repo.getDataFile().getPersons(), address
+        );
 
         //Va chercher le  Medical record de chaque personne pour avoir la date de naissance
         Map<String, MedicalRecord> recordByName =

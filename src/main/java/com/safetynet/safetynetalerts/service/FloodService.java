@@ -9,6 +9,7 @@ import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
 import com.safetynet.safetynetalerts.util.AgeUtil;
 import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
+import com.safetynet.safetynetalerts.util.PersonFilterUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -39,8 +40,12 @@ public class FloodService {
 
 
         // 3) Habitants par adresse
+        List<Person> personsAtStations = PersonFilterUtil.filterByStations(
+                repo.getDataFile().getPersons(), addresses
+        );
+
         Map<String, List<FirePersonDTO>> households = repo.getDataFile().getPersons().stream()
-                .filter(p -> addresses.contains(p.getAddress()))
+
                 .collect(Collectors.groupingBy(
                         Person::getAddress,
                         Collectors.mapping(p -> {

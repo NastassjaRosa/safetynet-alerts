@@ -10,6 +10,7 @@ import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
 import com.safetynet.safetynetalerts.util.AgeUtil;
 import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
+import com.safetynet.safetynetalerts.util.PersonFilterUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -72,10 +73,13 @@ public class FireStationService {
 
 
         // 3) liste des habitants concernés (on ne compte rien ici)
-        List<PersonCoverageDTO> persons = repo.getDataFile()
-                .getPersons()
-                .stream()
-                .filter(p -> addresses.contains(p.getAddress()))
+
+        List<Person> personsAtStations = PersonFilterUtil.filterByStations(
+                repo.getDataFile().getPersons(), addresses
+        );
+
+        List<PersonCoverageDTO> persons = personsAtStations.stream()
+
                 .map(p -> new PersonCoverageDTO(
                         p.getFirstName(),
                         p.getLastName(),
