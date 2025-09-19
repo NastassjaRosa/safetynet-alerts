@@ -15,10 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -36,8 +33,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 
 public class FireStationService {
-
     private final DataRepository repo;
+
+
+
+
+
+
 
     /**
      * Retourne toutes les casernes couvrant une adresse donnée.
@@ -97,6 +99,32 @@ public class FireStationService {
         long childCount = persons.size() - adultCount;
 
         return new StationCoverageDTO(persons, (int) adultCount, (int) childCount);
+    }
+
+    //get phone by station
+    public List<String> getPhonesByStation(int stationNumber) {
+        log.debug("Recherche des téléphones pour la station {}", stationNumber);
+
+        // 1. Adresses couvertes par la station
+        Set<String> addresses = repo.getDataFile()
+                .getFireStations()
+                .stream()
+                .filter(fs -> fs.getStation() == stationNumber)
+                .map(FireStation::getAddress)
+                .collect(Collectors.toSet());
+
+        // 2. Téléphones des habitants
+        List<String> phones = repo.getDataFile()
+                .getPersons()
+                .stream()
+                .filter(p -> addresses.contains(p.getAddress()))
+                .map(Person::getPhone)
+                .filter(Objects::nonNull)
+                .distinct() // supprime les doublons
+                .collect(Collectors.toList());
+
+        log.info("Station {} -> {} téléphones trouvés", stationNumber, phones.size());
+        return phones;
     }
 
 
