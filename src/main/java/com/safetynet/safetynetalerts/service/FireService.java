@@ -8,6 +8,7 @@ import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
 import com.safetynet.safetynetalerts.util.AgeUtil;
+import com.safetynet.safetynetalerts.util.DTOMapperUtil;
 import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
 import com.safetynet.safetynetalerts.util.PersonFilterUtil;
 import lombok.RequiredArgsConstructor;
@@ -44,18 +45,8 @@ public class FireService {
                 MedicalRecordUtil.indexByName(repo.getDataFile().getMedicalRecords());
 
         List<FirePersonDTO> personDTOs = persons.stream()
-                .map(p -> {
-                    MedicalRecord mr = recordByName.get(p.getFirstName() + "|" + p.getLastName());
-                    int age = (mr != null && mr.getBirthdate() != null) ? AgeUtil.getAge(mr.getBirthdate()) : -1;
-                    return new FirePersonDTO(
-                            p.getFirstName(),
-                            p.getLastName(),
-                            p.getPhone(),
-                            age,
-                            (mr != null) ? mr.getMedications() : List.of(),
-                            (mr != null) ? mr.getAllergies() : List.of()
-                    );
-                }).toList();
+                .map(p -> DTOMapperUtil.toFirePersonDTO(p, recordByName.get(p.getFirstName() + "|" + p.getLastName())))
+                .toList();
 
         log.info("Adresse {} → {} habitants trouvés", address, personDTOs.size());
         return new FireDTO(stationNumber, personDTOs);
