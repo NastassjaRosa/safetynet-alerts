@@ -7,6 +7,7 @@ import com.safetynet.safetynetalerts.model.FireStation;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
+import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -36,8 +37,9 @@ public class FireService {
                 .filter(p -> p.getAddress().equalsIgnoreCase(address))
                 .toList();
 
-        Map<String, MedicalRecord> recordByName = repo.getDataFile().getMedicalRecords().stream()
-                .collect(Collectors.toMap(m -> m.getFirstName() + "|" + m.getLastName(), Function.identity()));
+        // Index Prénom Nom avec Dossier médical depuis util
+        Map<String, MedicalRecord> recordByName =
+                MedicalRecordUtil.indexByName(repo.getDataFile().getMedicalRecords());
 
         List<FirePersonDTO> personDTOs = persons.stream()
                 .map(p -> {

@@ -4,6 +4,7 @@ import com.safetynet.safetynetalerts.dto.ChildAlertDTO;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
+import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,11 +34,9 @@ public class ChildAlertService {
                 .collect(Collectors.toList());
 
         //Va chercher le  Medical record de chaque personne pour avoir la date de naissance
-        Map<String, MedicalRecord> recordByName = repo.getDataFile().getMedicalRecords().stream()
-                .collect(Collectors.toMap(
-                        mr -> mr.getFirstName() + "|" + mr.getLastName(),
-                        Function.identity()
-                ));
+        Map<String, MedicalRecord> recordByName =
+                MedicalRecordUtil.indexByName(repo.getDataFile().getMedicalRecords());
+
 //determiner enfant puis l'exclure
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         List<ChildAlertDTO> children = new ArrayList<>();
