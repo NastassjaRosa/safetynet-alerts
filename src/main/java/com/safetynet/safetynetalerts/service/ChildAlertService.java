@@ -19,7 +19,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
-
+/**
+ * The type Child alert service.
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -28,6 +30,12 @@ public class ChildAlertService {
 
     private final DataRepository repo;
 
+    /**
+     * Gets children by address.
+     *
+     * @param address the address
+     * @return the children by address
+     */
     public List<ChildAlertDTO> getChildrenByAddress(String address) {
 
         //recuperer les personnes de dataRepository et filter personnes a l'adresse

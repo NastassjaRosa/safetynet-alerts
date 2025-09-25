@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * The type Person info controller.
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -20,6 +23,12 @@ import java.util.List;
 public class PersonInfoController {
     private final PersonInfoService personInfoService;
 
+    /**
+     * Gets person info.
+     *
+     * @param lastName the last name
+     * @return the person info
+     */
     @GetMapping
     public ResponseEntity<List<PersonInfoDTO>> getPersonInfo(@RequestParam String lastName) {
         log.debug("GET /personInfo = {}", lastName);

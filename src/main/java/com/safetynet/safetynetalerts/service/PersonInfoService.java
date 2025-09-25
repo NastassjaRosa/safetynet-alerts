@@ -15,12 +15,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * The type Person info service.
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class PersonInfoService {
     private final DataRepository repo;
 
+    /**
+     * Gets person by last name.
+     *
+     * @param lastName the last name
+     * @return the person by last name
+     */
     public List<PersonInfoDTO> getPersonByLastName(String lastName) {
 
         //medical record accès

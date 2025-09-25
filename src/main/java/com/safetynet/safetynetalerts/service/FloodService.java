@@ -21,11 +21,21 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * The type Flood service.
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class FloodService {
     private final DataRepository repo;
+
+    /**
+     * Gets households by stations.
+     *
+     * @param stations the stations
+     * @return the households by stations
+     */
     public FloodDTO getHouseholdsByStations(List<Integer> stations) {
         log.debug("Recherche des foyers pour les stations : {}", stations);
 

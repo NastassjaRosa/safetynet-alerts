@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The type Fire controller.
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -19,6 +22,12 @@ public class FireController {
 
     private final FireService fireService;
 
+    /**
+     * Gets persons by address.
+     *
+     * @param address the address
+     * @return the persons by address
+     */
     @GetMapping
     public ResponseEntity<FireDTO> getPersonsByAddress(@RequestParam String address) {
         log.debug("GET /fire?address={}", address);

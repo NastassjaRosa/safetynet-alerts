@@ -8,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * The type Medical record controller.
+ */
 @Slf4j
 @RestController
 @RequestMapping("/medicalRecord")
@@ -15,8 +18,12 @@ import org.springframework.web.bind.annotation.*;
 public class MedicalRecordController {
 
     private final MedicalRecordService service;
+
     /**
      * POST – ajout d'un dossier médical
+     *
+     * @param medicalRecord the medical record
+     * @return the response entity
      */
     @PostMapping
     public ResponseEntity<Void> add(@RequestBody MedicalRecord medicalRecord) {
@@ -27,6 +34,9 @@ public class MedicalRecordController {
 
     /**
      * PUT – mise à jour d'un dossier médical existant
+     *
+     * @param medicalRecord the medical record
+     * @return the response entity
      */
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody MedicalRecord medicalRecord) {
@@ -42,6 +52,10 @@ public class MedicalRecordController {
 
     /**
      * DELETE – suppression d'un dossier médical par prénom + nom
+     *
+     * @param firstName the first name
+     * @param lastName  the last name
+     * @return the response entity
      */
     @DeleteMapping
     public ResponseEntity<Void> delete(@RequestParam String firstName,

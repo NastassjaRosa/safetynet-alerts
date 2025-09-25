@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+/**
+ * The type Fire station mapping controller.
+ */
 @Slf4j
 @RestController
 @RequestMapping("/firestation/mapping")
@@ -19,6 +22,9 @@ public class FireStationMappingController {
 
     /**
      * POST – ajout d’un nouveau mapping adresse⇄caserne
+     *
+     * @param fs the fs
+     * @return the response entity
      */
     @PostMapping
     public ResponseEntity<Void> add(@RequestBody FireStation fs) {
@@ -29,6 +35,9 @@ public class FireStationMappingController {
 
     /**
      * PUT – mise à jour du n° de caserne pour une adresse
+     *
+     * @param fs the fs
+     * @return the response entity
      */
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody FireStation fs) {
@@ -41,10 +50,15 @@ public class FireStationMappingController {
             return ResponseEntity.notFound().build();    // 404
         }
         }
+
     /**
      * Delete – suppression d’un mapping adresse + station
+     *
+     * @param address the address
+     * @param station the station
+     * @return the response entity
      */
-        @DeleteMapping
+    @DeleteMapping
         public ResponseEntity<Void> delete (@RequestParam String address,
         @RequestParam int station){
             boolean removed = service.deleteMapping(address, station);

@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Child alert dto.
+ */
 @Data
 @AllArgsConstructor
 

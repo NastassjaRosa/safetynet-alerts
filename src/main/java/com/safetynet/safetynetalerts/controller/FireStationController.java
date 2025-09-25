@@ -30,9 +30,12 @@ import java.util.List;
 public class FireStationController {
 
     private final FireStationService fireStationService;
+
     /**
      * GET /firestation?address=...
-     * @return la/les casernes couvrant l’adresse.
+     *
+     * @param address the address
+     * @return la /les casernes couvrant l’adresse.
      */
 
     @GetMapping
@@ -41,6 +44,12 @@ public class FireStationController {
         return ResponseEntity.ok(result);
     }
 
+    /**
+     * Gets coverage by station.
+     *
+     * @param stationNumber the station number
+     * @return the coverage by station
+     */
     @GetMapping(params = "stationNumber")
     public ResponseEntity <StationCoverageDTO> getCoverageByStation(@RequestParam int stationNumber) {
 

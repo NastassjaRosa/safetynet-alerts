@@ -7,15 +7,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 /**
  * Vérifie que le contexte Spring Boot se charge sans erreur.
  */
-
-
 @SpringBootTest
 class SafetynetAlertsApplicationTests {
 
     /**
      * Test “smoke”: démarrage du contexte.
      */
-
     @Test
     void contextLoads() {
     }

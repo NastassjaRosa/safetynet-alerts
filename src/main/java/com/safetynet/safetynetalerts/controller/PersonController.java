@@ -8,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * The type Person controller.
+ */
 @Slf4j
 @RestController
 @RequestMapping("/person")
@@ -18,6 +21,9 @@ public class PersonController {
 
     /**
      * POST – ajout d'une nouvelle personne
+     *
+     * @param person the person
+     * @return the response entity
      */
     @PostMapping
     public ResponseEntity<Void> add(@RequestBody Person person) {
@@ -28,6 +34,9 @@ public class PersonController {
 
     /**
      * PUT – mise à jour d'une personne existante
+     *
+     * @param person the person
+     * @return the response entity
      */
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody Person person) {
@@ -43,6 +52,10 @@ public class PersonController {
 
     /**
      * DELETE – suppression d'une personne par prénom + nom
+     *
+     * @param firstName the first name
+     * @param lastName  the last name
+     * @return the response entity
      */
     @DeleteMapping
     public ResponseEntity<Void> delete(@RequestParam String firstName,

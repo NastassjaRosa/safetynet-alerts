@@ -8,7 +8,9 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 
-/** Représente une personne du fichier JSON. */
+/**
+ * Représente une personne du fichier JSON.
+ */
 @Data
 
 public class Person {
@@ -42,8 +44,12 @@ public class Person {
 //    }
 
     //calcul l'age utiliser pour childAlert pour avoir l'age de l'enfant dans la réponse
+
     /**
      * Calcule l'âge à partir de la date de naissance.
+     *
+     * @param birthdate the birthdate
+     * @return the age
      */
     public int getAge(String birthdate) {
         if (birthdate == null || birthdate.isBlank()) return -1;

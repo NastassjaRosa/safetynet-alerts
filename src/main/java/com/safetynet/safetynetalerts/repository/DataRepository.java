@@ -15,7 +15,6 @@ import java.io.InputStream;
  * Charge le fichier data.json au démarrage
  * et expose les listes via des getters.
  */
-
 @Slf4j
 @Component //Permet a sprng de le detecter Spring remarque cette classe, la construit UNE fois (objet singleton)
 

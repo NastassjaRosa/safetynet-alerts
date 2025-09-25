@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Data file.
+ */
 @Data
 public class DataFile {
 

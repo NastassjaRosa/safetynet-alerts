@@ -9,6 +9,9 @@ import java.util.List;
 
 // numéro de la caserne plus la liste de FirePersonneDTO
 
+/**
+ * The type Fire dto.
+ */
 @Data
 @AllArgsConstructor
 public class FireDTO {

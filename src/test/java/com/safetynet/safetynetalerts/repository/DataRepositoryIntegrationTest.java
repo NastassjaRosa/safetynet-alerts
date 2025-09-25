@@ -8,12 +8,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * The type Data repository integration test.
+ */
 @SpringBootTest
 class DataRepositoryIntegrationTest {
 
     @Autowired
     private DataRepository repo;
 
+    /**
+     * Data is loaded from json.
+     */
     @Test
     void dataIsLoadedFromJson() {
         DataFile df = repo.getDataFile();

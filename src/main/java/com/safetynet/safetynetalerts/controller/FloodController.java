@@ -15,6 +15,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The type Flood controller.
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -22,6 +25,12 @@ import java.util.stream.Collectors;
 public class FloodController {
     private final FloodService floodService;
 
+    /**
+     * Gets households by stations.
+     *
+     * @param stations the stations
+     * @return the households by stations
+     */
     @GetMapping
     public ResponseEntity<FloodDTO> getHouseholdsByStations(@RequestParam String stations) {
         log.debug("GET /flood/stations?stations={}", stations);

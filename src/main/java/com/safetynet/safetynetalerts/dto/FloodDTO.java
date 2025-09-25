@@ -7,6 +7,9 @@ import lombok.Data;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type Flood dto.
+ */
 @Data
 @AllArgsConstructor
 public class FloodDTO {

@@ -11,6 +11,9 @@ import org.springframework.http.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * The type Mapping end to end integration test.
+ */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class MappingEndToEndIntegrationTest {
 
@@ -20,11 +23,17 @@ class MappingEndToEndIntegrationTest {
     @Autowired
     private DataRepository repo;
 
+    /**
+     * Reset data.
+     */
     @BeforeEach
     void resetData() {
         // assure-toi que repo contient l'état initial (data.json) -- normalement ok
     }
 
+    /**
+     * Post put delete mapping flow.
+     */
     @Test
     void post_put_delete_mapping_flow() {
         FireStation newFs = new FireStation();

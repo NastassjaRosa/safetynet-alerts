@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * The type Person info dto.
+ */
 @Data
 @AllArgsConstructor
 public class PersonInfoDTO {

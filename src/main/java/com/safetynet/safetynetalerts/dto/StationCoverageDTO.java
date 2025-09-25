@@ -5,14 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
+
 /**
  * DTO « enveloppe » renvoyé par l’endpoint
- *  GET /firestation?stationNumber=X
- *
+ * GET /firestation?stationNumber=X
+ * <p>
  * Contient :
- *  • la liste formatée des habitants        (persons)
- *  • le nombre d’adultes (>18 ans)          (adultCount)
- *  • le nombre d’enfants (≤18 ans)          (childCount)
+ * • la liste formatée des habitants        (persons)
+ * • le nombre d’adultes (>18 ans)          (adultCount)
+ * • le nombre d’enfants (≤18 ans)          (childCount)
  */
 @Data
 @AllArgsConstructor

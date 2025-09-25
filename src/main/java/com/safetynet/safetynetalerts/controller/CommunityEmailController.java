@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * The type Community email controller.
+ */
 @Slf4j
 @RestController
 @RequestMapping("/communityEmail")
@@ -21,7 +24,12 @@ public class CommunityEmailController {
 private final CommunityEmailService service;
 
 
-
+    /**
+     * Gets emails.
+     *
+     * @param city the city
+     * @return the emails
+     */
     @GetMapping(params = "city")
     public ResponseEntity<List<String>> getEmails(@RequestParam String city) {
 

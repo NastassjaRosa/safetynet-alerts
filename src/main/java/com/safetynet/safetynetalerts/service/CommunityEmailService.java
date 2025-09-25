@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The type Community email service.
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -18,6 +21,12 @@ public class CommunityEmailService {
 
     private final DataRepository repo;
 
+    /**
+     * Gets emails by city.
+     *
+     * @param city the city
+     * @return the emails by city
+     */
     public List<String> getEmailsByCity(String city) {
         log.debug("getEmailsByCity city: {}", city);
 

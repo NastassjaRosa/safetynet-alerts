@@ -22,6 +22,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * The type Fire station mapping controller test.
+ */
 @ExtendWith(MockitoExtension.class)
 class FireStationMappingControllerTest {
 
@@ -34,12 +37,20 @@ class FireStationMappingControllerTest {
     private MockMvc mvc;
     private ObjectMapper om;
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         mvc = MockMvcBuilders.standaloneSetup(controller).build();
         om = new ObjectMapper();
     }
 
+    /**
+     * Add should return 201.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void add_shouldReturn201() throws Exception {
         FireStation fs = new FireStation();
@@ -54,6 +65,11 @@ class FireStationMappingControllerTest {
         verify(service).addMapping(any(FireStation.class));
     }
 
+    /**
+     * Update found should return 204.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void update_found_shouldReturn204() throws Exception {
         when(service.updateMapping(any(FireStation.class))).thenReturn(true);
@@ -70,6 +86,11 @@ class FireStationMappingControllerTest {
         verify(service).updateMapping(any(FireStation.class));
     }
 
+    /**
+     * Update not found should return 404.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void update_notFound_shouldReturn404() throws Exception {
         when(service.updateMapping(any(FireStation.class))).thenReturn(false);
@@ -84,6 +105,11 @@ class FireStationMappingControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    /**
+     * Delete found should return 204.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void delete_found_shouldReturn204() throws Exception {
         when(service.deleteMapping("1509 Culver St", 3)).thenReturn(true);
@@ -96,6 +122,11 @@ class FireStationMappingControllerTest {
         verify(service).deleteMapping("1509 Culver St", 3);
     }
 
+    /**
+     * Delete not found should return 404.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void delete_notFound_shouldReturn404() throws Exception {
         when(service.deleteMapping("nowhere", 1)).thenReturn(false);

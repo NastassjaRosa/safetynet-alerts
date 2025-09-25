@@ -9,6 +9,9 @@ import java.util.List;
 // une personne avec son nom telephone age médicaments et allergies
 
 
+/**
+ * The type Fire person dto.
+ */
 @Data
 @AllArgsConstructor
 public class FirePersonDTO {

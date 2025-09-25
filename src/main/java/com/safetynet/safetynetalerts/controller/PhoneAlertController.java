@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * The type Phone alert controller.
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -21,6 +24,12 @@ public class PhoneAlertController {
 
     private final FireStationService fireStationService;
 
+    /**
+     * Gets phones by station.
+     *
+     * @param firestation the firestation
+     * @return the phones by station
+     */
     @GetMapping(params = "firestation")
     public ResponseEntity<List<String>> getPhonesByStation(@RequestParam int firestation) {
         log.debug("GET /phoneAlert?firestation={}", firestation);

@@ -18,6 +18,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Fire station service test.
+ */
 @ExtendWith(MockitoExtension.class)
 
 public class FireStationServiceTest {
@@ -30,6 +33,9 @@ public class FireStationServiceTest {
 
     private DataFile dataFile;
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         dataFile = new DataFile();
@@ -49,6 +55,9 @@ public class FireStationServiceTest {
         when(repo.getDataFile()).thenReturn(dataFile);
     }
 
+    /**
+     * Gets coverage by station returns persons and counts.
+     */
     @Test
     void getCoverageByStation_returnsPersonsAndCounts() {
         StationCoverageDTO dto = service.getCoverageByStation(1);

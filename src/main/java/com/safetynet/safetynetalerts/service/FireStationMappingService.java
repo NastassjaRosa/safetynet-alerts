@@ -19,11 +19,22 @@ public class FireStationMappingService {
     private final DataRepository repo;
 //CRUD Mapping
 
+    /**
+     * Add mapping.
+     *
+     * @param fs the fs
+     */
     public void addMapping(FireStation fs) {
         repo.getDataFile().getFireStations().add(fs);
         log.debug("Mapping ajouté {}", fs);
     }
 
+    /**
+     * Update mapping boolean.
+     *
+     * @param fs the fs
+     * @return the boolean
+     */
     public boolean updateMapping(FireStation fs) {
         return repo.getDataFile()
                 .getFireStations()
@@ -34,6 +45,13 @@ public class FireStationMappingService {
                 .isPresent();
     }
 
+    /**
+     * Delete mapping boolean.
+     *
+     * @param address the address
+     * @param station the station
+     * @return the boolean
+     */
     public boolean deleteMapping(String address, int station) {
         return repo.getDataFile()
                 .getFireStations()

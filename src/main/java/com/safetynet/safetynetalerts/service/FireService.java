@@ -20,6 +20,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * The type Fire service.
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -27,6 +30,12 @@ import java.util.stream.Collectors;
 public class FireService {
     private final DataRepository repo;
 
+    /**
+     * Gets persons by address.
+     *
+     * @param address the address
+     * @return the persons by address
+     */
     public FireDTO getPersonsByAddress(String address) {
         log.debug("Recherche habitants et caserne pour {}", address);
 

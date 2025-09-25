@@ -24,9 +24,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
-
-
-
 /**
  * Règles métier liées aux données des casernes.
  */
@@ -40,15 +37,11 @@ public class FireStationService {
     private final DataRepository repo;
 
 
-
-
-
-
-
     /**
      * Retourne toutes les casernes couvrant une adresse donnée.
      *
      * @param address adresse recherchée
+     * @return the list
      */
     public List<FireStation> findByAddress(String address) {
         return repo.getDataFile() // objet racine contenant toutes les listes
@@ -57,7 +50,12 @@ public class FireStationService {
                 .filter(fs -> fs.getAddress().equals(address)) // pour chaque caserne, on lit l'addresse, si l'addresse correspond on garde donc on garde seulement l’adresse voulue
                 .collect(Collectors.toList()); // toutes les caserne qui on passées le filtre sont rangées dans une nouvelles liste ""re-fabrique"" une List
     }
-    /** Habitant·e·s + nombre d’adultes/enfants pour une caserne. */
+
+    /**
+     * Habitant·e·s + nombre d’adultes/enfants pour une caserne.  @param station the station
+     *
+     * @return the coverage by station
+     */
     public StationCoverageDTO getCoverageByStation(int station) {
 
         // 1) adresses desservies par cette caserne
@@ -105,7 +103,13 @@ public class FireStationService {
         return new StationCoverageDTO(persons, (int) adultCount, (int) childCount);
     }
 
-    //get phone by station
+    /**
+     * Gets phones by station.
+     *
+     * @param stationNumber the station number
+     * @return the phones by station
+     */
+//get phone by station
     public List<String> getPhonesByStation(int stationNumber) {
         log.debug("Recherche des téléphones pour la station {}", stationNumber);
 

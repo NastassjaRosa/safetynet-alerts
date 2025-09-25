@@ -21,6 +21,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * The type Fire station controller test.
+ */
 @ExtendWith(MockitoExtension.class)
 class FireStationControllerTest {
 
@@ -32,11 +35,19 @@ class FireStationControllerTest {
 
     private MockMvc mvc;
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         mvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
+    /**
+     * Gets by address should return list.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void getByAddress_shouldReturnList() throws Exception {
         FireStation fs = new FireStation();
@@ -52,6 +63,11 @@ class FireStationControllerTest {
                 .andExpect(jsonPath("$[0].station", is(3)));
     }
 
+    /**
+     * Gets coverage by station should return dto.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void getCoverageByStation_shouldReturnDTO() throws Exception {
         var persons = List.of(

@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+/**
+ * The type Medical record service.
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -14,11 +17,22 @@ public class MedicalRecordService {
 
     private final DataRepository repo;
 
+    /**
+     * Add medical record.
+     *
+     * @param record the record
+     */
     public void addMedicalRecord(MedicalRecord record) {
         repo.getDataFile().getMedicalRecords().add(record);
         log.info("MedicalRecord added: {} {}", record.getFirstName(), record.getLastName());
     }
 
+    /**
+     * Update medical record boolean.
+     *
+     * @param record the record
+     * @return the boolean
+     */
     public boolean updateMedicalRecord(MedicalRecord record) {
         return repo.getDataFile().getMedicalRecords()
                 .stream()
@@ -35,6 +49,13 @@ public class MedicalRecordService {
                 .orElse(false);
     }
 
+    /**
+     * Delete medical record boolean.
+     *
+     * @param firstName the first name
+     * @param lastName  the last name
+     * @return the boolean
+     */
     public boolean deleteMedicalRecord(String firstName, String lastName) {
         boolean removed = repo.getDataFile().getMedicalRecords()
                 .removeIf(mr -> mr.getFirstName().equalsIgnoreCase(firstName) &&
