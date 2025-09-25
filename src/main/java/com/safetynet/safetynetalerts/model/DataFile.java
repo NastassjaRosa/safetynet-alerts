@@ -3,6 +3,7 @@ package com.safetynet.safetynetalerts.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
 @Data
 public class DataFile {
 
-    private List<Person> persons;
+    private List<Person> persons = new ArrayList<>();
 
 
     /**
@@ -27,10 +28,10 @@ public class DataFile {
      */
 
     @JsonProperty("firestations")
-    private List<FireStation> fireStations;
+    private List<FireStation> fireStations = new ArrayList<>();
 
     @JsonProperty("medicalrecords")
-    private List<MedicalRecord> medicalRecords;
+    private List<MedicalRecord> medicalRecords = new ArrayList<>();
 
 
 }
