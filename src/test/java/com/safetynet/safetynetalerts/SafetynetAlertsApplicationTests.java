@@ -17,4 +17,12 @@ class SafetynetAlertsApplicationTests {
     void contextLoads() {
     }
 
+    /**
+     * Main should run without errors.
+     */
+    @Test
+    void main_shouldRunWithoutErrors() {
+        SafetynetAlertsApplication.main(new String[]{});
+    }
+
 }
