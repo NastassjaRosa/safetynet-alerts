@@ -54,6 +54,7 @@ public class FireStationService {
     /**
      * Habitant·e·s + nombre d’adultes/enfants pour une caserne.  @param station the station
      *
+     * @param station the station
      * @return the coverage by station
      */
     public StationCoverageDTO getCoverageByStation(int station) {
@@ -137,33 +138,6 @@ public class FireStationService {
         return phones;
     }
 
-
-
-
-
-//    //CRUD Mapping
-//
-//    public void addMapping(FireStation fs) {
-//        repo.getDataFile().getFireStations().add(fs);
-//        log.debug("Mapping ajouté {}", fs);
-//    }
-//
-//    public boolean updateMapping(FireStation fs) {
-//        return repo.getDataFile()
-//                .getFireStations()
-//                .stream()
-//                .filter(f -> f.getAddress().equalsIgnoreCase(fs.getAddress()))
-//                .peek(f -> f.setStation(fs.getStation()))
-//                .findFirst()
-//                .isPresent();
-//    }
-//
-//    public boolean deleteMapping(String address, int station) {
-//        return repo.getDataFile()
-//                .getFireStations()
-//                .removeIf(f -> f.getAddress().equalsIgnoreCase(address)
-//                        && f.getStation() == station);
-//    }
 
 
 }

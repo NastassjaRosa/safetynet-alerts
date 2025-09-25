@@ -3,12 +3,11 @@ package com.safetynet.safetynetalerts;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 /**
  * Point d’entrée de l’application SafetyNet Alerts.
  * Lance le contexte Spring Boot.
  */
-
-
 @SpringBootApplication
 public class SafetynetAlertsApplication {
 

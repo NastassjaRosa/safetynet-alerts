@@ -37,7 +37,6 @@ public class FireStationController {
      * @param address the address
      * @return la /les casernes couvrant l’adresse.
      */
-
     @GetMapping
     public ResponseEntity <List<FireStation>> getByAdress(@RequestParam String address) {
         List<FireStation> result = fireStationService.findByAddress(address);

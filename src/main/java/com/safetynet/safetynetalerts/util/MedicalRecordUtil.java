@@ -14,6 +14,7 @@ public class MedicalRecordUtil {
     /**
      * Crée un index Prénom Nom avec MedicalRecord pour tout le projet  @param records the records
      *
+     * @param records the records
      * @return the map
      */
     public static Map<String, MedicalRecord> indexByName(List<MedicalRecord> records) {
