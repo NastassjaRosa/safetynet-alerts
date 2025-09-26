@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import static com.safetynet.safetynetalerts.util.SaveUtil.save;
+
 /**
  * The type Medical record service.
  */
@@ -17,6 +19,8 @@ public class MedicalRecordService {
 
     private final DataRepository repo;
 
+
+
     /**
      * Add medical record.
      *
@@ -24,7 +28,8 @@ public class MedicalRecordService {
      */
     public void addMedicalRecord(MedicalRecord record) {
         repo.getDataFile().getMedicalRecords().add(record);
-        log.info("MedicalRecord added: {} {}", record.getFirstName(), record.getLastName());
+        save(repo, "ajout du dossier médical");
+        log.debug("Dossier médical ajouté : {} {}", record.getFirstName(), record.getLastName());
     }
 
     /**
@@ -34,7 +39,7 @@ public class MedicalRecordService {
      * @return the boolean
      */
     public boolean updateMedicalRecord(MedicalRecord record) {
-        return repo.getDataFile().getMedicalRecords()
+        boolean updated = repo.getDataFile().getMedicalRecords()
                 .stream()
                 .filter(mr -> mr.getFirstName().equalsIgnoreCase(record.getFirstName()) &&
                         mr.getLastName().equalsIgnoreCase(record.getLastName()))
@@ -47,6 +52,12 @@ public class MedicalRecordService {
                     return true;
                 })
                 .orElse(false);
+
+        if (updated) {
+            save(repo, "mise à jour du dossier médical");
+            log.debug("Dossier médical mis à jour : {} {}", record.getFirstName(), record.getLastName());        }
+        return updated;
+
     }
 
     /**
@@ -61,7 +72,8 @@ public class MedicalRecordService {
                 .removeIf(mr -> mr.getFirstName().equalsIgnoreCase(firstName) &&
                         mr.getLastName().equalsIgnoreCase(lastName));
         if (removed) {
-            log.info("MedicalRecord deleted: {} {}", firstName, lastName);
+            save(repo, "suppression du dossier médical");
+            log.debug("Dossier médical supprimé : {} {}", firstName, lastName);
         }
         return removed;
     }

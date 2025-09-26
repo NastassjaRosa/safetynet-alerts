@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import static com.safetynet.safetynetalerts.util.SaveUtil.save;
+
 /**
  * Règles métier liées aux données des casernes.
  */
@@ -17,6 +19,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class FireStationMappingService {
     private final DataRepository repo;
+
+
+
+
+
 //CRUD Mapping
 
     /**
@@ -26,6 +33,7 @@ public class FireStationMappingService {
      */
     public void addMapping(FireStation fs) {
         repo.getDataFile().getFireStations().add(fs);
+        save(repo, "ajout de la caserne");
         log.debug("Mapping ajouté {}", fs);
     }
 
@@ -36,13 +44,20 @@ public class FireStationMappingService {
      * @return the boolean
      */
     public boolean updateMapping(FireStation fs) {
-        return repo.getDataFile()
+        boolean updated = repo.getDataFile()
                 .getFireStations()
                 .stream()
                 .filter(f -> f.getAddress().equalsIgnoreCase(fs.getAddress()))
                 .peek(f -> f.setStation(fs.getStation()))
                 .findFirst()
                 .isPresent();
+
+        if (updated) {
+            save(repo, "mise à jour de la caserne");
+            log.debug("Mapping mis à jour : {}", fs);
+        }
+        return updated;
+
     }
 
     /**
@@ -53,10 +68,18 @@ public class FireStationMappingService {
      * @return the boolean
      */
     public boolean deleteMapping(String address, int station) {
-        return repo.getDataFile()
+        boolean removed = repo.getDataFile()
                 .getFireStations()
                 .removeIf(f -> f.getAddress().equalsIgnoreCase(address)
                         && f.getStation() == station);
+
+        if (removed) {
+            save(repo, "suppression de la caserne");
+            log.debug("Mapping supprimé : {} - station {}", address, station);
+        }
+        return removed;
+
+
     }
 
 

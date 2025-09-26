@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import static com.safetynet.safetynetalerts.util.SaveUtil.save;
+
 /**
  * The type Person service.
  */
@@ -17,6 +19,9 @@ public class PersonService {
 
     private final DataRepository repo;
 
+
+
+
     /**
      * Add person.
      *
@@ -24,7 +29,8 @@ public class PersonService {
      */
     public void addPerson(Person person) {
         repo.getDataFile().getPersons().add(person);
-        log.info("Person added: {} {}", person.getFirstName(), person.getLastName());
+        save(repo, "ajout de la personne");
+        log.debug("Personne ajoutée : {} {}", person.getFirstName(), person.getLastName());
     }
 
     /**
@@ -34,7 +40,7 @@ public class PersonService {
      * @return the boolean
      */
     public boolean updatePerson(Person person) {
-        return repo.getDataFile().getPersons()
+        boolean updated = repo.getDataFile().getPersons()
                 .stream()
                 .filter(p ->p.getFirstName().equalsIgnoreCase(person.getFirstName())&&
                         p.getLastName().equalsIgnoreCase(person.getLastName()))
@@ -49,6 +55,12 @@ public class PersonService {
 
                 })
                 .orElse(false);
+
+        if (updated) {
+            save(repo, "mise à jour de la personne");
+            log.debug("Personne mise à jour : {} {}", person.getFirstName(), person.getLastName());        }
+        return updated;
+
     }
 
     /**
@@ -63,7 +75,8 @@ public class PersonService {
                 .removeIf(p -> p.getFirstName().equalsIgnoreCase(firstName) &&
                         p.getLastName().equalsIgnoreCase(lastName));
         if (removed) {
-            log.info("Person deleted: {} {}", firstName, lastName);
+            save(repo, "suppression de la personne");
+            log.debug("Personne supprimée : {} {}", firstName, lastName);
         }
         return removed;
     }

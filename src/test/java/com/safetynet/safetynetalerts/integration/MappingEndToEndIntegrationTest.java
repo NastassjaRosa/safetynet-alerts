@@ -28,7 +28,6 @@ class MappingEndToEndIntegrationTest {
      */
     @BeforeEach
     void resetData() {
-        // assure-toi que repo contient l'état initial (data.json) -- normalement ok
     }
 
     /**
