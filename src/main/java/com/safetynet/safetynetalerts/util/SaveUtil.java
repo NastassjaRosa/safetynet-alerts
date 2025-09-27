@@ -6,16 +6,20 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+/**
+ * The type Save util.
+ */
 @Slf4j
 public final class SaveUtil {
 
-private SaveUtil() {
+    private SaveUtil() {
 
-}
+    }
+
     /**
      * Sauvegarde les données via le DataRepository avec gestion des erreurs.
      *
-     * @param repo  le repository qui gère le fichier JSON
+     * @param repo   le repository qui gère le fichier JSON
      * @param action description de l’action ("ajout", "mise à jour", "suppression")
      */
     public static void save(DataRepository repo, String action) {

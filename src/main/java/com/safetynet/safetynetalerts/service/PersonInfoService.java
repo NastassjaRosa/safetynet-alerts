@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -41,18 +40,18 @@ public class PersonInfoService {
                 .stream()
                 .filter(p -> p.getLastName().equalsIgnoreCase(lastName))
                 .map(p -> {
-                            MedicalRecord mr = recordByName.get(p.getFirstName() + "|" +p.getLastName());
-                            int age = (mr != null) ? AgeUtil.getAge(mr.getBirthdate()) : -1;
-                            return new PersonInfoDTO(
-                                    p.getFirstName(),
-                                    p.getLastName(),
-                                    p.getAddress(),
-                                    age,
-                                    p.getEmail(),
-                                    (mr != null) ? mr.getMedications() : List.of(),
-                                    (mr != null) ? mr.getAllergies() : List.of()
-                            );
-                        })
+                    MedicalRecord mr = recordByName.get(p.getFirstName() + "|" + p.getLastName());
+                    int age = (mr != null) ? AgeUtil.getAge(mr.getBirthdate()) : -1;
+                    return new PersonInfoDTO(
+                            p.getFirstName(),
+                            p.getLastName(),
+                            p.getAddress(),
+                            age,
+                            p.getEmail(),
+                            (mr != null) ? mr.getMedications() : List.of(),
+                            (mr != null) ? mr.getAllergies() : List.of()
+                    );
+                })
                 .collect(Collectors.toList());
 
     }

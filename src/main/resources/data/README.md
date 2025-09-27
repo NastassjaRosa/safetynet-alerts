@@ -1,7 +1,7 @@
-
 # 📑 Comprendre `data.json` et la création des modèles Java
 
-Ce guide explique comment fonctionne le fichier `data.json` et comment ses données deviennent utilisables en Java à l’aide de Jackson et Lombok.
+Ce guide explique comment fonctionne le fichier `data.json` et comment ses données deviennent utilisables en Java à
+l’aide de Jackson et Lombok.
 
 ---
 
@@ -24,14 +24,14 @@ Chaque collection porte un nom au pluriel, par exemple : `persons`, `firestation
       "phone": "841-874-6512",
       "email": "john.boyd@email.com"
     }
-    // ...
+    
   ],
   "firestations": [
     {
       "address": "1509 Culver St",
       "station": "3"
     }
-    // ...
+    
   ],
   "medicalrecords": [
     {
@@ -41,7 +41,7 @@ Chaque collection porte un nom au pluriel, par exemple : `persons`, `firestation
       "medications": ["aznol:350mg", "hydrapermazol:100mg"],
       "allergies": ["nillacilan"]
     }
-    // ...
+    
   ]
 }
 ```
@@ -62,7 +62,9 @@ Chaque collection porte un nom au pluriel, par exemple : `persons`, `firestation
   "lastName": "Boyd"
 }
 ```
+
 devient :
+
 ```java
 public class Person {
     private String firstName;
@@ -80,6 +82,7 @@ public class Person {
 - Les **types** sont adaptés (`String`, `List<String>`, etc.).
 
 **Exemple pour la classe `Person` :**
+
 ```java
 import lombok.Data;
 
@@ -103,8 +106,10 @@ Pour lire toutes les collections d’un seul coup, on crée une classe racine ap
 Cette classe contient une liste pour chaque collection du JSON.
 
 **Exemple :**
+
 ```java
 import lombok.Data;
+
 import java.util.List;
 
 @Data
@@ -114,8 +119,10 @@ public class Data {
     private List<MedicalRecord> medicalrecords;
 }
 ```
+
 **But du wrapper :**  
-Cela permet à Jackson de lire tout le fichier JSON d’un coup et de reconstituer l’arborescence complète (plusieurs listes d’objets).
+Cela permet à Jackson de lire tout le fichier JSON d’un coup et de reconstituer l’arborescence complète (plusieurs
+listes d’objets).
 
 ---
 
@@ -127,14 +134,17 @@ Jackson est une bibliothèque Java qui permet de convertir facilement du JSON en
 - Il crée un objet `Data` et remplit les listes de `Person`, `FireStation` et `MedicalRecord` à partir du JSON.
 
 **Exemple de code :**
+
 ```java
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
 
 ObjectMapper objectMapper = new ObjectMapper();
 Data data = objectMapper.readValue(new File("src/main/resources/data/data.json"), Data.class);
 // data.getPersons() contient la liste des personnes
 ```
+
 **En résumé :**  
 Jackson « désérialise » le JSON, c’est-à-dire qu’il transforme le texte JSON en objets Java exploitables.
 

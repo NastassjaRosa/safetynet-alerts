@@ -6,7 +6,6 @@ import lombok.Data;
 import java.util.List;
 
 
-
 // numéro de la caserne plus la liste de FirePersonneDTO
 
 /**

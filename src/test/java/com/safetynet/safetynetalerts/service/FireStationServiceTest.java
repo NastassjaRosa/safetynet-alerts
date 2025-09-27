@@ -3,7 +3,6 @@ package com.safetynet.safetynetalerts.service;
 import com.safetynet.safetynetalerts.dto.StationCoverageDTO;
 import com.safetynet.safetynetalerts.model.DataFile;
 import com.safetynet.safetynetalerts.model.FireStation;
-import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +17,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Fire station service test.
+ */
 @ExtendWith(MockitoExtension.class)
 class FireStationServiceTest {
 
@@ -29,12 +31,18 @@ class FireStationServiceTest {
 
     private DataFile dataFile;
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         dataFile = new DataFile();
         when(repo.getDataFile()).thenReturn(dataFile);
     }
 
+    /**
+     * Gets coverage by station should return empty when no stations.
+     */
     @Test
     void getCoverageByStation_shouldReturnEmpty_whenNoStations() {
         dataFile.setFireStations(List.of());
@@ -48,10 +56,19 @@ class FireStationServiceTest {
         assertThat(dto.getChildCount()).isZero();
     }
 
+    /**
+     * Gets phones by station should return phones when station exists.
+     */
     @Test
     void getPhonesByStation_shouldReturnPhones_whenStationExists() {
-        FireStation fs = new FireStation(); fs.setAddress("Addr1"); fs.setStation(1);
-        Person p1 = new Person(); p1.setFirstName("A"); p1.setLastName("One"); p1.setAddress("Addr1"); p1.setPhone("111");
+        FireStation fs = new FireStation();
+        fs.setAddress("Addr1");
+        fs.setStation(1);
+        Person p1 = new Person();
+        p1.setFirstName("A");
+        p1.setLastName("One");
+        p1.setAddress("Addr1");
+        p1.setPhone("111");
 
         dataFile.setFireStations(List.of(fs));
         dataFile.setPersons(List.of(p1));
@@ -62,9 +79,14 @@ class FireStationServiceTest {
         assertThat(phones).containsExactly("111");
     }
 
+    /**
+     * Gets phones by station should return empty when no persons at station.
+     */
     @Test
     void getPhonesByStation_shouldReturnEmpty_whenNoPersonsAtStation() {
-        FireStation fs = new FireStation(); fs.setAddress("Addr1"); fs.setStation(1);
+        FireStation fs = new FireStation();
+        fs.setAddress("Addr1");
+        fs.setStation(1);
         dataFile.setFireStations(List.of(fs));
         dataFile.setPersons(List.of()); // aucun habitant
         dataFile.setMedicalRecords(List.of());

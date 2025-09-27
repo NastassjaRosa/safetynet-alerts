@@ -20,8 +20,6 @@ public class PersonService {
     private final DataRepository repo;
 
 
-
-
     /**
      * Add person.
      *
@@ -42,10 +40,10 @@ public class PersonService {
     public boolean updatePerson(Person person) {
         boolean updated = repo.getDataFile().getPersons()
                 .stream()
-                .filter(p ->p.getFirstName().equalsIgnoreCase(person.getFirstName())&&
+                .filter(p -> p.getFirstName().equalsIgnoreCase(person.getFirstName()) &&
                         p.getLastName().equalsIgnoreCase(person.getLastName()))
                 .findFirst()
-                .map(existing->{
+                .map(existing -> {
                     existing.setAddress(person.getAddress());
                     existing.setCity(person.getCity());
                     existing.setZip(person.getZip());
@@ -58,7 +56,8 @@ public class PersonService {
 
         if (updated) {
             save(repo, "mise à jour de la personne");
-            log.debug("Personne mise à jour : {} {}", person.getFirstName(), person.getLastName());        }
+            log.debug("Personne mise à jour : {} {}", person.getFirstName(), person.getLastName());
+        }
         return updated;
 
     }
@@ -80,7 +79,6 @@ public class PersonService {
         }
         return removed;
     }
-
 
 
 }

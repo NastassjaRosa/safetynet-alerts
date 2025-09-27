@@ -20,7 +20,6 @@ public class MedicalRecordService {
     private final DataRepository repo;
 
 
-
     /**
      * Add medical record.
      *
@@ -55,7 +54,8 @@ public class MedicalRecordService {
 
         if (updated) {
             save(repo, "mise à jour du dossier médical");
-            log.debug("Dossier médical mis à jour : {} {}", record.getFirstName(), record.getLastName());        }
+            log.debug("Dossier médical mis à jour : {} {}", record.getFirstName(), record.getLastName());
+        }
         return updated;
 
     }

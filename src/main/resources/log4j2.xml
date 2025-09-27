@@ -2,41 +2,41 @@
 
 <Configuration status="WARN">
 
-<!-- Appenders (= destinations) -->
-<Appenders>
-    <!-- Console : tout en couleur -->
-    <Console name="Console" target="SYSTEM_OUT">
-        <PatternLayout
-                pattern="%d{HH:mm:ss.SSS} [%t] %-5level %c{1} - %msg%n"/>
-    </Console>
+    <!-- Appenders (= destinations) -->
+    <Appenders>
+        <!-- Console : tout en couleur -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{HH:mm:ss.SSS} [%t] %-5level %c{1} - %msg%n"/>
+        </Console>
 
-    <!-- Fichier avec rotation journalière -->
-    <RollingFile name="FileAppender" fileName="logs/safetynet.log"
-                 filePattern="logs/safetynet-%d{yyyy-MM-dd}.log.gz">
-        <PatternLayout>
-            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %c{1} - %msg%n</Pattern>
-        </PatternLayout>
-        <Policies>
-            <TimeBasedTriggeringPolicy />
-            <SizeBasedTriggeringPolicy size="10 MB"/>
-        </Policies>
-    </RollingFile>
+        <!-- Fichier avec rotation journalière -->
+        <RollingFile name="FileAppender" fileName="logs/safetynet.log"
+                     filePattern="logs/safetynet-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %c{1} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+        </RollingFile>
 
-</Appenders>
+    </Appenders>
 
-<!-- Loggers -->
-<Loggers>
-    <!-- Racine → INFO par défaut -->
-    <Root level="info">
-        <AppenderRef ref="Console"/>
-        <AppenderRef ref="FileAppender"/>
-    </Root>
+    <!-- Loggers -->
+    <Loggers>
+        <!-- Racine → INFO par défaut -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileAppender"/>
+        </Root>
 
-    <!-- Ton appli : DEBUG -->
-    <Logger name="com.safetynet" level="debug" additivity="false">
-        <AppenderRef ref="Console"/>
-        <AppenderRef ref="FileAppender"/>
-    </Logger>
-</Loggers>
+        <!-- Ton appli : DEBUG -->
+        <Logger name="com.safetynet" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+    </Loggers>
 
 </Configuration>

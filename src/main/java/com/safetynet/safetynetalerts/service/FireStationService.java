@@ -1,7 +1,6 @@
 package com.safetynet.safetynetalerts.service;
 
 
-import com.safetynet.safetynetalerts.dto.ChildAlertDTO;
 import com.safetynet.safetynetalerts.dto.PersonCoverageDTO;
 import com.safetynet.safetynetalerts.dto.StationCoverageDTO;
 import com.safetynet.safetynetalerts.model.FireStation;
@@ -17,10 +16,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.function.Function;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -88,8 +87,8 @@ public class FireStationService {
                 .toList();
 
         // 4) comptage adulte / enfant (après coup)
-        DateTimeFormatter fmt  = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDate         now  = LocalDate.now();
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate now = LocalDate.now();
 
         long adultCount = persons.stream()
                 .filter(dto -> {
@@ -137,7 +136,6 @@ public class FireStationService {
 
         return phones;
     }
-
 
 
 }

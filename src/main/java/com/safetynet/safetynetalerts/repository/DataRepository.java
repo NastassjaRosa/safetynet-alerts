@@ -45,7 +45,10 @@ public class DataRepository {
         }
 
     }
-    /** Charge les données initiales depuis resources/ et les copie dans data/data.json */
+
+    /**
+     * Charge les données initiales depuis resources/ et les copie dans data/data.json
+     */
     private void loadFromClasspathAndBootstrapExternal() throws IOException {
         try (InputStream is = getClass().getClassLoader().getResourceAsStream(CLASSPATH_PATH)) {
             if (is == null) {
@@ -63,6 +66,11 @@ public class DataRepository {
     // puis on le renomme en data.json uniquement quand tout est ok.
     // Evite d'avoir un fichier data.json incomplet si l'écriture plante.
 
+    /**
+     * Save.
+     *
+     * @throws IOException the io exception
+     */
     public synchronized void save() throws IOException {
         Files.createDirectories(EXTERNAL_DIR);
         Path tmp = EXTERNAL_PATH.resolveSibling(EXTERNAL_PATH.getFileName() + ".tmp");
@@ -77,7 +85,9 @@ public class DataRepository {
         logData("Données sauvegardées dans " + EXTERNAL_PATH.toAbsolutePath());
     }
 
-    /** Affiche le résumé avec les données  */
+    /**
+     * Affiche le résumé avec les données
+     */
     private void logData(String prefix) {
         log.info("{} : {} persons, {} firestations, {} medicalrecords",
                 prefix,

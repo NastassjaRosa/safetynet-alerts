@@ -21,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommunityEmailController {
 
-private final CommunityEmailService service;
+    private final CommunityEmailService service;
 
 
     /**

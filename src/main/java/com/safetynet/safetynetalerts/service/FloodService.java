@@ -7,7 +7,6 @@ import com.safetynet.safetynetalerts.model.FireStation;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
 import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
-import com.safetynet.safetynetalerts.util.AgeUtil;
 import com.safetynet.safetynetalerts.util.DTOMapperUtil;
 import com.safetynet.safetynetalerts.util.MedicalRecordUtil;
 import com.safetynet.safetynetalerts.util.PersonFilterUtil;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**

@@ -2,7 +2,6 @@ package com.safetynet.safetynetalerts.controller;
 
 import com.safetynet.safetynetalerts.model.FireStation;
 import com.safetynet.safetynetalerts.service.FireStationMappingService;
-import com.safetynet.safetynetalerts.service.FireStationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +48,7 @@ public class FireStationMappingController {
             log.warn("Mapping to update not found {}", fs);
             return ResponseEntity.notFound().build();    // 404
         }
-        }
+    }
 
     /**
      * Delete – suppression d’un mapping adresse + station
@@ -59,14 +58,14 @@ public class FireStationMappingController {
      * @return the response entity
      */
     @DeleteMapping
-        public ResponseEntity<Void> delete (@RequestParam String address,
-        @RequestParam int station){
-            boolean removed = service.deleteMapping(address, station);
-            if (removed) {
-                log.info("Mapping deleted {} / {}", address, station);
-                return ResponseEntity.noContent().build();
-            }
-            log.error("Mapping to delete not found {} / {}", address, station);
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Void> delete(@RequestParam String address,
+                                       @RequestParam int station) {
+        boolean removed = service.deleteMapping(address, station);
+        if (removed) {
+            log.info("Mapping deleted {} / {}", address, station);
+            return ResponseEntity.noContent().build();
         }
+        log.error("Mapping to delete not found {} / {}", address, station);
+        return ResponseEntity.notFound().build();
     }
+}
