@@ -25,11 +25,35 @@ public class MedicalRecordService {
      *
      * @param record the record
      */
+
     public void addMedicalRecord(MedicalRecord record) {
+        // Vérifier que la personne existe
+        boolean personExists = repo.getDataFile().getPersons().stream()
+                .anyMatch(p -> p.getFirstName().equalsIgnoreCase(record.getFirstName()) &&
+                        p.getLastName().equalsIgnoreCase(record.getLastName()));
+
+        if (!personExists) {
+            throw new IllegalArgumentException("Person not found: "
+                    + record.getFirstName() + " " + record.getLastName());
+        }
+
+        // Vérifier qu'il n'y a pas déjà un dossier médical
+        boolean exists = repo.getDataFile().getMedicalRecords().stream()
+                .anyMatch(mr -> mr.getFirstName().equalsIgnoreCase(record.getFirstName()) &&
+                        mr.getLastName().equalsIgnoreCase(record.getLastName()));
+
+        if (exists) {
+            throw new IllegalArgumentException("MedicalRecord already exists: "
+                    + record.getFirstName() + " " + record.getLastName());
+        }
+
+        // Ajout si tout est ok
         repo.getDataFile().getMedicalRecords().add(record);
         save(repo, "ajout du dossier médical");
         log.debug("Dossier médical ajouté : {} {}", record.getFirstName(), record.getLastName());
     }
+
+
 
     /**
      * Update medical record boolean.

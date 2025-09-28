@@ -25,12 +25,26 @@ public class MedicalRecordController {
      * @param medicalRecord the medical record
      * @return the response entity
      */
+
     @PostMapping
     public ResponseEntity<Void> add(@RequestBody MedicalRecord medicalRecord) {
-        service.addMedicalRecord(medicalRecord);
-        log.info("MedicalRecord created {}", medicalRecord);
-        return ResponseEntity.status(201).build(); // 201 Created
+        try {
+            service.addMedicalRecord(medicalRecord);
+            log.info("MedicalRecord created {}", medicalRecord);
+            return ResponseEntity.status(201).build(); // 201 Created
+        } catch (IllegalArgumentException e) {
+            if (e.getMessage().contains("already exists")) {
+                log.warn("Doublon dossier médical: {}", e.getMessage());
+                return ResponseEntity.status(409).build(); // 409 Conflict
+            } else if (e.getMessage().contains("Person not found")) {
+                log.warn("Personne introuvable: {}", e.getMessage());
+                return ResponseEntity.badRequest().build(); // 400 Bad Request
+            } else {
+                return ResponseEntity.internalServerError().build(); // 500 si autre problème
+            }
+        }
     }
+
 
     /**
      * PUT – mise à jour d'un dossier médical existant
