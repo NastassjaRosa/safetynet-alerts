@@ -2,6 +2,7 @@ package com.safetynet.safetynetalerts.service;
 
 import com.safetynet.safetynetalerts.model.DataFile;
 import com.safetynet.safetynetalerts.model.MedicalRecord;
+import com.safetynet.safetynetalerts.model.Person;
 import com.safetynet.safetynetalerts.repository.DataRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,6 +37,7 @@ class MedicalRecordServiceTest {
     void setUp() {
         dataFile = new DataFile();
         dataFile.setMedicalRecords(new ArrayList<>());
+
         when(repo.getDataFile()).thenReturn(dataFile);
     }
 
@@ -44,6 +46,16 @@ class MedicalRecordServiceTest {
      */
     @Test
     void addMedicalRecord_shouldAddRecord() {
+        Person john = new Person();
+        john.setFirstName("John");
+        john.setLastName("Doe");
+        john.setAddress("1509 Culver St");
+        john.setCity("Culver");
+        john.setZip(97451);
+        john.setPhone("841-874-6512");
+        john.setEmail("john.doe@email.com");
+        dataFile.getPersons().add(john);
+
         MedicalRecord record = new MedicalRecord();
         record.setFirstName("John");
         record.setLastName("Doe");
